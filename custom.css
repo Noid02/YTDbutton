@@ -1,0 +1,13 @@
+#YTDbutton {
+    margin-right: 1rem;
+    background-color: #bd1b21;
+    border-radius: 2rem;
+    border: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#YTDbutton:hover {
+    background-color: #da2e34;
+}

@@ -1,0 +1,14 @@
+{
+    "name": "YTDbutton",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "description",
+    "host_permissions": ["https://*.youtube.com/*"],
+    "content_scripts": [
+        {
+            "matches": ["https://*.youtube.com/watch*"],
+            "js": ["main.js"],
+            "css": ["custom.css"]
+        }
+    ]
+}
