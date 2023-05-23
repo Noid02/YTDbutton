@@ -1,16 +1,21 @@
 (() => {
     const target_query = "#top-level-buttons-computed"
     let target = null
+    let t
+    let just_loaded = true
+    let el
 
-    const t = setInterval(() => {
-        target = document.querySelector(target_query)
-        if (target != null) finish()
-    }, 500)
+    function search() {
+        t = setInterval(() => {
+            target = document.querySelector(target_query)
+            if (target != null) finish()
+        }, 500)
+    }
 
     function finish() {
         clearInterval(t)
         console.log(target)
-        const el = document.createElement('button')
+        el = document.createElement('button')
         el.setAttribute("id", "YTDbutton")
         el.innerHTML = 'Download'
 
@@ -21,5 +26,21 @@
         }
 
         target.insertBefore(el, target.firstChild)
+
+        if (just_loaded) observe(el)
     }
+
+    function observe() {
+        just_loaded = false
+        const observer = new MutationObserver(mutations => {
+            alert('triggered')
+            console.log(mutations)
+            mutations.forEach(mutation => {
+                if (mutation.removedNodes[0] == el) search()
+            })
+        })
+        observer.observe(target, {childList: true})
+    }
+
+    search()
 })()
