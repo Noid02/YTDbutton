@@ -2,7 +2,7 @@
     "name": "YTDbutton",
     "version": "1.0",
     "manifest_version": 3,
-    "description": "description",
+    "description": "Adds a simple button in the YouTube actions bar that redirests to Y2Mate",
     "host_permissions": ["https://*.youtube.com/*"],
     "content_scripts": [
         {
