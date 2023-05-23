@@ -14,7 +14,11 @@
 
     function finish() {
         clearInterval(t)
-        console.log(target)
+        create_btn()
+        if (just_loaded) observe(el)
+    }
+
+    function create_btn() {
         el = document.createElement('button')
         el.setAttribute("id", "YTDbutton")
         el.innerHTML = 'Download'
@@ -26,17 +30,13 @@
         }
 
         target.insertBefore(el, target.firstChild)
-
-        if (just_loaded) observe(el)
     }
 
     function observe() {
         just_loaded = false
         const observer = new MutationObserver(mutations => {
-            alert('triggered')
-            console.log(mutations)
             mutations.forEach(mutation => {
-                if (mutation.removedNodes[0] == el) search()
+                if (mutation.removedNodes[0] == el) create_btn()
             })
         })
         observer.observe(target, {childList: true})
